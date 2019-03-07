@@ -1,0 +1,85 @@
+
+ Performance counter stats for process id '23940':
+
+        66,355,219 cache-misses             #     33.282 M/sec
+        77,974,844 cache-references         #     39.110 M/sec
+            52,251 branch-misses            #      0.018 %    
+       293,082,815 branches                 #    147.001 M/sec
+     4,245,787,974 instructions             #      0.926 IPC  
+     4,585,761,378 cycles                   #   2300.066 M/sec
+               819 page-faults              #      0.000 M/sec
+                 0 CPU-migrations           #      0.000 M/sec
+                20 context-switches         #      0.000 M/sec
+       1993.751940 task-clock-msecs         #      0.997 CPUs 
+
+        2.000545138  seconds time elapsed
+
+date: #  Thu 04 May 2017 04:29:51 PM GST -0.766381 seconds
+
+ Performance counter stats for process id '23940':
+
+        65,533,816 cache-misses             #     32.876 M/sec
+        76,607,361 cache-references         #     38.431 M/sec
+            50,863 branch-misses            #      0.017 %    
+       294,127,254 branches                 #    147.553 M/sec
+     4,264,948,401 instructions             #      0.930 IPC  
+     4,584,832,669 cycles                   #   2300.037 M/sec
+                 0 page-faults              #      0.000 M/sec
+                 0 CPU-migrations           #      0.000 M/sec
+                19 context-switches         #      0.000 M/sec
+       1993.373266 task-clock-msecs         #      0.996 CPUs 
+
+        2.000528451  seconds time elapsed
+
+date: #  Thu 04 May 2017 04:29:54 PM GST -0.984692 seconds
+
+ Performance counter stats for process id '23940':
+
+        65,642,167 cache-misses             #     33.009 M/sec
+        76,822,882 cache-references         #     38.631 M/sec
+            52,540 branch-misses            #      0.018 %    
+       298,679,760 branches                 #    150.194 M/sec
+     4,299,624,799 instructions             #      0.940 IPC  
+     4,574,047,247 cycles                   #   2300.104 M/sec
+                 0 page-faults              #      0.000 M/sec
+                 0 CPU-migrations           #      0.000 M/sec
+                20 context-switches         #      0.000 M/sec
+       1988.626419 task-clock-msecs         #      0.994 CPUs 
+
+        2.000573562  seconds time elapsed
+
+date: #  Thu 04 May 2017 04:29:57 PM GST -0.984682 seconds
+
+ Performance counter stats for process id '23940':
+
+        66,276,842 cache-misses             #     33.246 M/sec
+        78,265,757 cache-references         #     39.260 M/sec
+            51,800 branch-misses            #      0.017 %    
+       296,098,316 branches                 #    148.528 M/sec
+     4,266,542,089 instructions             #      0.930 IPC  
+     4,585,293,950 cycles                   #   2300.067 M/sec
+                 0 page-faults              #      0.000 M/sec
+                 0 CPU-migrations           #      0.000 M/sec
+                20 context-switches         #      0.000 M/sec
+       1993.548173 task-clock-msecs         #      0.997 CPUs 
+
+        2.000530260  seconds time elapsed
+
+date: #  Thu 04 May 2017 04:30:00 PM GST -0.984688 seconds
+
+ Performance counter stats for process id '23940':
+
+        65,153,133 cache-misses             #     32.768 M/sec
+        76,755,407 cache-references         #     38.604 M/sec
+            51,130 branch-misses            #      0.017 %    
+       293,111,256 branches                 #    147.418 M/sec
+     4,240,268,091 instructions             #      0.927 IPC  
+     4,573,141,871 cycles                   #   2300.030 M/sec
+                 0 page-faults              #      0.000 M/sec
+                 0 CPU-migrations           #      0.000 M/sec
+                21 context-switches         #      0.000 M/sec
+       1988.296402 task-clock-msecs         #      0.994 CPUs 
+
+        2.000534820  seconds time elapsed
+
+date: #  Thu 04 May 2017 04:30:03 PM GST -1.004716 seconds
