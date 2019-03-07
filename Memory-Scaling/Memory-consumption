@@ -1,0 +1,160 @@
+Name:   gamess_base.gcc (1032sec)
+VmPeak:   664636 kB
+VmSize:   664636 kB
+VmLck:         0 kB
+VmHWM:     16556 kB
+VmRSS:     16556 kB
+VmData:   644264 kB
+VmStk:       176 kB
+VmExe:      8636 kB
+VmLib:      3264 kB
+VmPTE:        76 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        7
+nonvoluntary_ctxt_switches:     310
+
+
+Name:   milc_base.gcc43 (551sec)
+VmPeak:   581868 kB
+VmSize:   559368 kB
+VmLck:         0 kB
+VmHWM:    567160 kB
+VmRSS:    544660 kB
+VmData:   552812 kB
+VmStk:        88 kB
+VmExe:       120 kB
+VmLib:      2216 kB
+VmPTE:       120 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        1
+nonvoluntary_ctxt_switches:     156
+
+Name:   gobmk_base.gcc4 (646sec)
+VmPeak:    36216 kB
+VmSize:    36212 kB
+VmLck:         0 kB
+VmHWM:     28476 kB
+VmRSS:     28472 kB
+VmData:    26252 kB
+VmStk:       136 kB
+VmExe:      1444 kB
+VmLib:      2216 kB
+VmPTE:        64 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        2
+nonvoluntary_ctxt_switches:     209
+
+Name:   hmmer_base.gcc4 (643sec)
+VmPeak:    30540 kB
+VmSize:    30540 kB
+VmLck:         0 kB
+VmHWM:     24464 kB
+VmRSS:     24464 kB
+VmData:    23816 kB
+VmStk:        88 kB
+VmExe:       284 kB
+VmLib:      2216 kB
+VmPTE:        96 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        0
+nonvoluntary_ctxt_switches:     186
+
+Name:   libquantum_base (622sec)
+VmPeak:    74252 kB
+VmSize:    72200 kB
+VmLck:         0 kB
+VmHWM:     66216 kB
+VmRSS:     66216 kB
+VmData:    65724 kB
+VmStk:        88 kB
+VmExe:        40 kB
+VmLib:      2216 kB
+VmPTE:        84 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        0
+nonvoluntary_ctxt_switches:     170
+
+Name:   ferret (537sec)
+VmPeak:   489800 kB
+VmSize:   489796 kB
+VmLck:         0 kB
+VmHWM:     98264 kB
+VmRSS:     97864 kB
+VmData:   480396 kB
+VmStk:        88 kB
+VmExe:       816 kB
+VmLib:      2308 kB
+VmPTE:       184 kB
+VmSwap:        0 kB
+Threads:        7
+voluntary_ctxt_switches:        1
+nonvoluntary_ctxt_switches:     4
+
+Name:   canneal (293sec)
+VmPeak:   568968 kB
+VmSize:   568968 kB
+VmLck:         0 kB
+VmHWM:    556244 kB
+VmRSS:    556244 kB
+VmData:   555180 kB
+VmStk:        88 kB
+VmExe:        56 kB
+VmLib:      3324 kB
+VmPTE:       804 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        7
+nonvoluntary_ctxt_switches:     197
+
+Name:   bodytrack (215sec)
+VmPeak:   234604 kB
+VmSize:   169904 kB
+VmLck:         0 kB
+VmHWM:     31732 kB
+VmRSS:     30192 kB
+VmData:   155656 kB
+VmStk:        88 kB
+VmExe:       512 kB
+VmLib:      3324 kB
+VmPTE:       140 kB
+VmSwap:        0 kB
+Threads:        3
+voluntary_ctxt_switches:        746
+nonvoluntary_ctxt_switches:     152
+
+Name:   x264 (191sec)  Full memory
+VmPeak:    93892 kB
+VmSize:    93892 kB
+VmLck:         0 kB
+VmHWM:     82728 kB
+VmRSS:     82728 kB
+VmData:    84216 kB
+VmStk:        88 kB
+VmExe:      1088 kB
+VmLib:      2308 kB
+VmPTE:       112 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        12
+nonvoluntary_ctxt_switches:     11261
+
+10mb memory
+VmPeak:    39780 kB
+VmSize:    39780 kB
+VmLck:         0 kB
+VmHWM:      9628 kB
+VmRSS:      9612 kB
+VmData:    30104 kB
+VmStk:        88 kB
+VmExe:      1088 kB
+VmLib:      2308 kB
+VmPTE:        88 kB
+VmSwap:        0 kB
+Threads:        1
+voluntary_ctxt_switches:        5071
+nonvoluntary_ctxt_switches:     3
