@@ -1,0 +1,35 @@
+Switching the cores online and offline:
+for i in {3..11}; do echo 0 >  "/sys/devices/system/cpu/cpu$i/online"; done
+ for i in {1..11}; do cat "/sys/devices/system/cpu/cpu$i/online"; done
+ for i in {0..11}; do cat "/sys/devices/system/cpu/cpu$i/online"; done
+ for i in {1..11}; do cat "/sys/devices/system/cpu/cpu$i/online"; done
+
+Changing the CPU governer:
+echo userspace >  "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+for i in {0..5}; do echo userspace >  "/sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor"; done
+for i in {0..11}; do cat  "/sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor"; done
+
+Setting the frequency to 1.2GHz
+echo 1200000 > "/sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed"
+cat  "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq"
+
+Run PCM to sample the performance counters values every sec.
+cd /opt/Installed_Softs/InterPerfCounterMonitorYas/
+   ./pcm.x 1000
+
+To execute steadyc0.sh, go to the directory and type:
+./steadyc0.sh
+
+
+
+
+Run the workload and extract the processid. Then request the process to run on specific core.
+ ps aux | grep parsec_script_bodytrack.sh
+  taskset -cp 0 30636
+  taskset -cp 0 30270
+  ps aux | grep parsec_script_canneal.sh
+  taskset -cp 1 31232
+  ps aux | grep parsec_script_ferret.sh
+  taskset -cp 2 31593
+  ps aux | grep parsec_script_freqmine.sh
+  taskset -cp 3 31952
