@@ -17,12 +17,6 @@ Run PCM to sample the performance counters values every sec.
 cd /opt/Installed_Softs/InterPerfCounterMonitorYas/
    ./pcm.x 1000
 
-To execute steadyc0.sh, go to the directory and type:
-./steadyc0.sh
-
-
-
-
 Run the workload and extract the processid. Then request the process to run on specific core.
  ps aux | grep parsec_script_bodytrack.sh
   taskset -cp 0 30636
@@ -33,3 +27,5 @@ Run the workload and extract the processid. Then request the process to run on s
   taskset -cp 2 31593
   ps aux | grep parsec_script_freqmine.sh
   taskset -cp 3 31952
+
+
