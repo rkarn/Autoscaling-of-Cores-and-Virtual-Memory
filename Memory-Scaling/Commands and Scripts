@@ -1,0 +1,167 @@
+These commands shows amount of used and available RAM, cache, buffers.
+free
+vmstat
+vmstat 1 100
+top
+cat /proc/meminfo  
+vmstat output details
+swpd: the amount of virtual memory used.
+free: the amount of idle memory.
+buff: the amount of memory used as buffers.
+cache: the amount of memory used as cache.
+inact: the amount of inactive memory. (-a option)
+active: the amount of active memory. (-a option)
+
+sudo apt-get install htop 
+
+perf command gives the number of cache misses, cache-references, branch misses and branch count for a processID.
+perf stat -p <Process ID>
+
+
+This command will clearup the cache.
+sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"
+
+stress is a workload generator that simulates cpu/mem/io/hdd stress on POSIX systems. This call should do the trick on Linux. This will use 90% of the main memory.
+
+stress --vm-bytes $(awk '/MemFree/{printf "%d\n", $2 * 0.9;}' < /proc/meminfo)k --vm-keep -m 1
+
+http://unix.stackexchange.com/questions/99334/how-to-fill-90-of-the-free-memory
+swapoff -a
+dd if=/dev/zero of=/dev/shm/fill bs=1k count=1024k
+
+A workload generator on the VM. This will impart 100% load on the CPU.
+dd if=/dev/zero of=/dev/null &
+
+Swap space in Linux is used when the amount of physical memory (RAM) is full. If the system needs more memory resources and the RAM is full, inactive pages in memory are moved to the swap space. While swap space can help machines with a small amount of RAM, it should not be considered a replacement for more RAM.
+
+(voluntary context switches increases regularly as the comand 'cat /proc/742/status' is executed. Status is showing as Disk Sleep. If process is marked as D (Disk sleep) it just means that the main task is in disk sleep. All other tasks (threads) could be doing anything else.) Checked it for x264 with 10mb size, the workload completion time is 7192sec.
+
+virtual memory = part in physical memory + part on disk
+
+The part in physical memory is RSS. So, VSS should be greater than RSS. If they are close to equal, that means your process is sitting comfortably in memory. If VSS is much larger, that means there isn't enough memory and parts of it have to be swapped out to disk (i.e., because of a competing process, etc.). 
+
+          * VmPeak: Peak virtual memory size.
+
+          * VmSize: Virtual memory size.
+
+          * VmLck: Locked memory size (see mlock(3)).
+
+          * VmHWM: Peak resident set size ("high water mark").
+
+          * VmRSS: Resident set size.
+
+          * VmData, VmStk, VmExe: Size of data, stack, and text segments.
+
+getconf PAGESIZE : It gives the pagesize in byte.
+The PAGESIZE is set at kernel compile time. The selection of pagesize manually is only valid for i386 hardware. If you run a 64-bit system or any other architecture, the page size is 4K and cannot be changed.
+
+/proc/[pid]/statm  
+ Provides information about memory usage, measured in pages.  The columns are:  
+
+  size       (1) total program size  
+             (same as VmSize in /proc/[pid]/status)  
+  resident   (2) resident set size  
+             (same as VmRSS in /proc/[pid]/status)  
+  share      (3) shared pages (i.e., backed by a file)  
+  text       (4) text (code)  
+  lib        (5) library (unused in Linux 2.6)  
+  data       (6) data + stack  
+  dt         (7) dirty pages (unused in Linux 2.
+
+Voluntary context switch occurs when your application is blocked in a system call and the kernel decide to give it's time slice to another process.
+
+Non voluntary context switch occurs when your application has used all the timeslice the scheduler has attributed to it (the kernel try to pretend that each application has the whole computer for themselves, and can use as much CPU they want, but has to switch from one to another so that the user has the illusion that they are all running in parallel).
+
+A context switch can be voluntary - where a process either completes its task before its allotted time slice is over or enters a suspended state because it makes a blocking IO call. Alternatively a context switch can be involuntary wherein if a process exhausts the cpu time slice allotted to it the kernel will pre-empt the process and switch it out to grant cpu time to another process in the run queue. The suspension of the first process and scheduling of the second one requires the kernel to store the state of the first process and load the state of the second one. The overhead and time required for the same is referred to as context switching overhead.
+
+The count of voluntary context switches of a process can be used to infer the frequency of blocking calls of a process. Involuntary context switches on the other hand signify processes contending for the cpu and having to be switched out even though their task had not completed.
+
+
+A volontary context switch can occur whenever a thread/process makes a system call that blocks.
+
+An involontary context switch occurs when a thread has been running too long (usually something like 10 ms) without making a system call that blocks and there are processes waiting for the CPU.
+
+
+
+lscpu -- lists the size of L1, L2 and l3 caches and other systems related information.
+dmidecode -t cache  --  shows whether the operation modes are write through or write back cache and other informations.
+cat /proc/cpuinfo  --  Give detailed information of each and every cores of CPU, e.g memory info, cache info, bus speed etc.
+GO to: cat /sys/devices/system/cpu/cpu0/cache/index0/ and explore the several files, it will give details of virtual memory and cache attributes.
+cat /sys/devices/system/cpu/cpu0/cache/index0/shared_cpu_list
+cat /sys/devices/system/cpu/cpu0/cache/index1/shared_cpu_list
+cat /sys/devices/system/cpu/cpu0/cache/index2/shared_cpu_list
+cat /sys/devices/system/cpu/cpu0/cache/index3/shared_cpu_list
+
+Fill 90% of the free memory.
+swapoff -a
+dd if=/dev/zero of=/dev/shm/fill bs=1k count=1024k
+
+
+
+
+context switching description: http://www.linfo.org/context_switch.html
+Number of context switches: man pidstat,` pidstat -w 10 1,  pidstat -r -p 2 5,  pidstat -wt,  watch -tdn1 cat /proc/interrupts, powertop
+
+
+Several commands in red hat linux (very important): https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Tuning_and_Optimizing_Red_Hat_Enterprise_Linux_for_Oracle_9i_and_10g_Databases/chap-Oracle_9i_and_10g_Tuning_Guide-Swap_Space.html
+
+
+Setting memory limit to execute certain process.
+http://coldattic.info/shvedsky/pro/blogs/a-foo-walks-into-a-bar/posts/40
+https://unix.stackexchange.com/questions/44985/limit-memory-usage-for-a-single-linux-process
+Cgroup:
+umount /cgroup/memory
+cgdelete memory:/test-subgroup
+service cgconfig restart
+mkdir /cgroup/cpu_and_mem
+mount -t cgroup -o memory cpu_and_mem /cgroup/cpu_and_mem
+lssubsys -am
+cgcreate -g memory:/test-subgroup
+echo $(( 50 * 1024 * 1024 )) > /cgroup/cpu_and_mem/test-subgroup/memory.limit_in_bytes
+echo $(( 50 * 1024 * 1024 )) > /cgroup/cpu_and_mem/test-subgroup/memory.memsw.limit_in_bytes
+The memory.memsw.limit_in_bytes parameter represents the sum of memory and swap. (https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-memory.html)
+ls /cgroup/cpu_and_mem/test-subgroup/
+cgexec -g memory:test-subgroup /home/rkarn/WorkloadSignature/timeexecutioncal_swaptions.sh
+Attach already running process to the cgroup: cgclassify -g subsystems:path_to_cgroup pidlist
+e.g: cgclassify -g memory:test-subgroup 1701
+Other contollers include cpuset, memory, and blkio. The cpuset controller is related to the cpu controller in that it allows the processes in a group to be bound to a specific CPU, or set of cores in a CPU.
+sudo cgcreate -g cpu:/cpulimited
+sudo cgcreate -g cpu:/lesscpulimited
+The “-g cpu” part of the command tell cgroups that the groups can place limits on the amount of CPU resources given to the processes in the group.
+cat /cgroup/cpu_and_mem/memory.stat  -- Gives the details of memory usage. 
+cgset -r cpu.shares=512 cpulimited
+cgset -r cpu.shares=1024 lesscpulimited
+
+ulimit -Sv 500000     # Set ~500 mb limit
+ulimit -Sv unlimited     # Set unlimited
+ulimit -a
+
+Load PAT (Page Attribute Table):  cat /sys/kernel/debug/x86/pat_memtype_list    https://www.kernel.org/doc/Documentation/x86/pat.txt
+http://stackoverflow.com/questions/20069620/print-kernels-page-table-entries
+echo <pid_of_interest> > /proc/sys/debug/pgt_dump_process_id   where pid_of_interest if the pid of the process whose page table's you wish to monitor.
+echo -1 > /proc/sys/debug/pgt_dump_process_id   this will dump the kernel's page tables. But this folder is not available in this machine. 
+
+Look for the Virtual memory pdf in the folder for details.
+
+
+Explore the content of RAM: https://unix.stackexchange.com/questions/34830/exploring-ram-contents
+cat /proc/<PID>/maps
+pmap -x <PID>
+pmap -d <PID>
+man pmap: shows the description of the fields like Kbyte, offset, RSS, Dirty, Device etc.
+cat /proc/<PID>/status : shows the description of several memory usage of a process, e.g stack, data, library. static variables etc. 
+ cat /proc/<PID>/smaps | more  : It shows page table content of the given PID. It shows userspace memory description like page tables. 
+
+
+Show the RAM speed:  dmidecode --type 17   THere are many sockets given, look for the active socket. 
+dmidecode -t cache: Shows the cache size, associativity mode as 4-way, 8-way and writeback/write-through.
+The command shows, L1 and L2 cache as write-through and 8-way set associative. L3 cache as write back and Associativity = <OUT OF SPEC>. Speed is showing as unknown.
+
+Extract only PID at runtime: perf stat -p $(a=$(pgrep -f milc); echo $a | awk ' {print $3}')
+
+NUMA Node: https://technet.microsoft.com/en-us/library/ms178144(v=sql.105).aspx
+
+Description of buffers and cache: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Tuning_and_Optimizing_Red_Hat_Enterprise_Linux_for_Oracle_9i_and_10g_Databases/chap-Oracle_9i_and_10g_Tuning_Guide-Memory_Usage_and_Page_Cache.html
+
+for i in {1..5}; do perf stat -p $(a=$(pgrep -f libquantum); echo $a | awk ' {print $3}') sleep 2 ; echo "date: # " $(hwclock --show); done  >  ramusage.txt 2>&1
+
